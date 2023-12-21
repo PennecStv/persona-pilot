@@ -18,7 +18,7 @@
     <ng-container matColumnDef="detail-button">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let element"> 
-            <button mat-stroked-button>DETAIL</button>
+            <button mat-stroked-button routerLink="/user/{{ element.id }}">DETAIL</button>
         </td>
     </ng-container>
     <ng-container matColumnDef="edit-button">
