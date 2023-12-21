@@ -11,14 +11,24 @@ export class UsersService {
   constructor(private router: Router, private http: HttpService) {}
 
   users = new BehaviorSubject<User[]>([]);
+  selectedUser = new BehaviorSubject<User>(new User());
 
   isLoading = new BehaviorSubject<boolean>(false);
 
-  public getUsers() {
+  public fetchUsers() {
     this.isLoading.next(true);
-    this.http.getUsers().subscribe((data: User[]) => {
+    this.http.fetchUsers().subscribe((data: User[]) => {
       this.users.next(data);
       this.isLoading.next(false);
     });
+  }
+
+  public selectUser(id: string) {
+    this.isLoading.next(true);
+    const sub = this.http.getUser(id).subscribe((user: User) => {
+      this.selectedUser.next(user);
+      this.isLoading.next(false);
+    });
+    // sub.unsubscribe();
   }
 }

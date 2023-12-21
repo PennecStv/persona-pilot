@@ -1,1 +1,16 @@
-<p>detail-user works!</p>
+<mat-card ngClass="user-detail-card">
+  <mat-card-title> User Detail </mat-card-title>
+  <mat-card-content>
+    <div><strong>ID :</strong> {{ selectedUser.id }}</div>
+    <div><strong>First Name :</strong> {{ selectedUser.first_name }}</div>
+    <div><strong>Last Name :</strong> {{ selectedUser.last_name }}</div>
+    <div><strong>Email :</strong> {{ selectedUser.email }}</div>
+    <div><strong>Occupation :</strong> {{ selectedUser.occupation }}</div>
+    <div><strong>Biography :</strong> {{ selectedUser.bio }}</div>
+  </mat-card-content>
+  <mat-card-actions
+    ><button mat-stroked-button [routerLink]="['/home']">
+      RETURN
+    </button></mat-card-actions
+  >
+</mat-card>

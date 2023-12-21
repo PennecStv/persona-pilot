@@ -18,6 +18,7 @@ export class UserComponent implements OnInit {
 
   userDataSource: MatTableDataSource<User> = new MatTableDataSource<User>();
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
+  isLoading: boolean = false;
 
   columnsToDisplay = [
     'id',
@@ -30,13 +31,20 @@ export class UserComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    this.userService.getUsers();
+    this.userService.fetchUsers();
 
     let subscription = this.userService.users.subscribe((data: User[]) => {
       this.usersList = data;
       this.userDataSource = new MatTableDataSource<User>(this.usersList);
       this.userDataSource.paginator = this.paginator;
     });
+    this.subscriptions.push(subscription);
+
+    subscription = this.userService.isLoading.subscribe(
+      (isLoading: boolean) => {
+        this.isLoading = isLoading;
+      }
+    );
     this.subscriptions.push(subscription);
   }
 }
