@@ -9,6 +9,10 @@ import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { routes } from './app.routes';
+
 @NgModule({
   declarations: [AppComponent, UserListComponent, UserComponent],
   imports: [
@@ -17,6 +21,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatTableModule,
     BrowserAnimationsModule,
     MatSlideToggleModule,
+    HttpClientModule,
+    RouterModule.forRoot(routes),
   ],
   providers: [],
   bootstrap: [AppComponent],
