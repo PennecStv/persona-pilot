@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { UsersService } from '../shared/services/users.service';
 import { User } from '../shared/models/user.model';
 import { Subscription } from 'rxjs';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
 @Component({
   selector: 'app-user',
@@ -14,14 +16,27 @@ export class UserComponent implements OnInit {
   usersList: User[] = [];
   subscriptions: Subscription[] = [];
 
+  userDataSource: MatTableDataSource<User> = new MatTableDataSource<User>();
+  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
+
+  columnsToDisplay = [
+    'id',
+    'first_name',
+    'last_name',
+    'email',
+    'detail-button',
+    'edit-button',
+    'delete-button',
+  ];
+
   ngOnInit(): void {
     this.userService.getUsers();
 
     let subscription = this.userService.users.subscribe((data: User[]) => {
       this.usersList = data;
+      this.userDataSource = new MatTableDataSource<User>(this.usersList);
+      this.userDataSource.paginator = this.paginator;
     });
     this.subscriptions.push(subscription);
   }
-
-  columnsToDisplay = ['id', 'first_name', 'last_name', 'email'];
 }
