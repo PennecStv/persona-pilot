@@ -30,6 +30,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { routes } from './app.routes';
 import { AddUserComponent } from './user/add-user/add-user.component';
+import { NotFoundComponent } from './404/404.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { AddUserComponent } from './user/add-user/add-user.component';
     DetailUserComponent,
     UpdateUserComponent,
     AddUserComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
