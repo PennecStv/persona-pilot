@@ -2,7 +2,7 @@
   <mat-card-title> Add a new Persona to the collection </mat-card-title>
   <mat-card-subtitle> A new member joining the unit </mat-card-subtitle>
   <mat-card-content>
-    <form>
+    <form ngClass="user-form">
       <mat-form-field appearance="outline">
         <mat-label>First Name</mat-label>
         <input matInput [(ngModel)]="newUser.first_name" name="first-name" />
@@ -23,14 +23,20 @@
         <input matInput [(ngModel)]="newUser.occupation" name="occupation" />
       </mat-form-field>
 
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" ngClass="bio-field">
         <mat-label>Biography</mat-label>
-        <textarea matInput [(ngModel)]="newUser.bio" name="bio"></textarea>
+        <textarea
+          matInput
+          [(ngModel)]="newUser.bio"
+          name="bio"
+          ngClass="bio-textarea"
+          style="height: 100px"
+        ></textarea>
       </mat-form-field>
     </form>
   </mat-card-content>
 
-  <mat-card-actions>
+  <mat-card-actions ngClass="user-form-button">
     <button
       mat-stroked-button
       color="primary"

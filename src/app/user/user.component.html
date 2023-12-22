@@ -43,6 +43,7 @@
     matSort
     (matSortChange)="sortData($event)"
     [ngStyle]="{ height: '100%' }"
+    ngClass="user-table"
   >
     <ng-container matColumnDef="id">
       <th mat-header-cell mat-sort-header="id" *matHeaderCellDef>ID</th>
@@ -68,7 +69,7 @@
     </ng-container>
     <ng-container matColumnDef="detail-button">
       <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let element">
+      <td mat-cell *matCellDef="let element" ngClass="control-button">
         <button
           mat-stroked-button
           color="accent"
@@ -80,7 +81,7 @@
     </ng-container>
     <ng-container matColumnDef="edit-button">
       <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let element">
+      <td mat-cell *matCellDef="let element" ngClass="control-button">
         <button
           mat-stroked-button
           color="primary"
@@ -92,7 +93,7 @@
     </ng-container>
     <ng-container matColumnDef="delete-button">
       <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let element">
+      <td mat-cell *matCellDef="let element" ngClass="control-button">
         <button mat-flat-button color="warn" (click)="deleteUser(element.id)">
           DELETE
         </button>

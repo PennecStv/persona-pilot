@@ -26,8 +26,23 @@
   height: 100%;
 }
 
+.user-table {
+  align-content: top;
+}
+
 .mat-cell {
   color: #fff;
-  text-align: center;
   font-size: larger;
+  text-align: center;
+}
+.mat-mdc-cell {
+  color: #fff;
+  font-size: larger;
+  vertical-align: top;
+  height: 50px;
+  padding-top: 25px;
+}
+
+.control-button {
+  padding-top: 18px;
 }
