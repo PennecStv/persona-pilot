@@ -22,6 +22,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { MatList, MatListModule } from '@angular/material/list';
 
 /* Routing */
 import { AppRoutingModule } from './app-routing.module';
@@ -56,6 +57,7 @@ import { AddUserComponent } from './user/add-user/add-user.component';
     MatSnackBarModule,
     MatToolbarModule,
     MatIconModule,
+    MatListModule,
     RouterModule.forRoot(routes),
   ],
   providers: [],

@@ -5,18 +5,75 @@
 
 <ng-template #loadingFinished>
   <mat-card ngClass="user-detail-card">
-    <mat-card-title> User Detail </mat-card-title>
+    <mat-card-title [ngStyle]="{ 'text-align': 'center' }">
+      User Detail
+    </mat-card-title>
     <div *ngIf="selectedUser; else noUserSelected">
       <mat-card-content>
-        <div><strong>ID :</strong> {{ selectedUser.id }}</div>
-        <div><strong>First Name :</strong> {{ selectedUser.first_name }}</div>
-        <div><strong>Last Name :</strong> {{ selectedUser.last_name }}</div>
-        <div><strong>Email :</strong> {{ selectedUser.email }}</div>
-        <div><strong>Occupation :</strong> {{ selectedUser.occupation }}</div>
-        <div><strong>Biography :</strong> {{ selectedUser.bio }}</div>
+        <mat-list role="list">
+          <mat-list-item role="listitem">
+            <div ngClass="list-item">
+              <div ngClass="list-item-label">
+                <mat-icon ngClass="detail-icon">perm_identity</mat-icon> ID :
+              </div>
+              <div>{{ selectedUser.id }}</div>
+            </div>
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            <div ngClass="list-item">
+              <div ngClass="list-item-label">
+                <mat-icon ngClass="detail-icon">looks_one</mat-icon>First Name :
+              </div>
+              <div>{{ selectedUser.first_name }}</div>
+            </div></mat-list-item
+          >
+          <mat-list-item role="listitem">
+            <div ngClass="list-item">
+              <div ngClass="list-item-label">
+                <mat-icon ngClass="detail-icon">looks_two</mat-icon>Last Name :
+              </div>
+              <div>{{ selectedUser.last_name }}</div>
+            </div></mat-list-item
+          >
+          <mat-list-item role="listitem"
+            ><div ngClass="list-item">
+              <div ngClass="list-item-label">
+                <mat-icon ngClass="detail-icon">alternate_email</mat-icon>Email
+                :
+              </div>
+              <div>{{ selectedUser.email }}</div>
+            </div></mat-list-item
+          >
+          <mat-list-item role="listitem">
+            <div ngClass="list-item">
+              <div ngClass="list-item-label">
+                <mat-icon ngClass="detail-icon">work_outline</mat-icon
+                >Occupation :
+              </div>
+              <div>{{ selectedUser.occupation }}</div>
+            </div></mat-list-item
+          >
+          <mat-list-item role="listitem"
+            ><div
+              ngClass="list-item-label"
+              [ngStyle]="{ 'text-align': 'center' }"
+            >
+              <mat-icon ngClass="detail-icon">notes</mat-icon>
+              Biography :
+            </div> </mat-list-item
+          ><mat-list-item role="listitem">
+            <p ngClass="bio-content">{{ selectedUser.bio }}</p>
+          </mat-list-item>
+        </mat-list>
       </mat-card-content>
       <mat-card-actions
-        ><button mat-stroked-button [routerLink]="['/home']">RETURN</button>
+        ><button
+          mat-stroked-button
+          [routerLink]="['/home']"
+          ngClass="return-button"
+        >
+          RETURN
+        </button>
       </mat-card-actions>
     </div>
     <ng-template #noUserSelected>
