@@ -5,11 +5,11 @@ import { User } from 'src/app/shared/models/user.model';
 import { UsersService } from 'src/app/shared/services/users.service';
 
 @Component({
-  selector: 'app-update-user',
-  templateUrl: './update-user.component.html',
-  styleUrls: ['./update-user.component.css'],
+  selector: 'app-detail-user',
+  templateUrl: './detail-user.component.html',
+  styleUrls: ['./detail-user.component.css'],
 })
-export class UpdateUserComponent implements OnInit {
+export class DetailUserComponent implements OnInit {
   constructor(
     private userService: UsersService,
     private activatedRoute: ActivatedRoute
@@ -40,9 +40,5 @@ export class UpdateUserComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
-  }
-
-  onSubmit(): void {
-    this.userService.updateUser();
   }
 }

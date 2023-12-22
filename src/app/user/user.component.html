@@ -1,44 +1,65 @@
-<table mat-table [dataSource]="userDataSource">
+<mat-spinner *ngIf="isLoading; else loadingFinished" ngClass="progress-spinner">
+</mat-spinner>
+
+<ng-template #loadingFinished>
+  <button mat-raised-button routerLink="/add">ADD USER</button>
+
+  <table mat-table [dataSource]="userDataSource">
     <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> ID </th>
-        <td mat-cell *matCellDef="let element" [routerLink]="[]"> {{element.id}} </td>
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let element" [routerLink]="[]">
+        {{ element.id }}
+      </td>
     </ng-container>
     <ng-container matColumnDef="first_name">
-        <th mat-header-cell *matHeaderCellDef> First name </th>
-        <td mat-cell *matCellDef="let element"> {{element.first_name}} </td>
+      <th mat-header-cell *matHeaderCellDef>First name</th>
+      <td mat-cell *matCellDef="let element">{{ element.first_name }}</td>
     </ng-container>
     <ng-container matColumnDef="last_name">
-        <th mat-header-cell *matHeaderCellDef> Last name </th>
-        <td mat-cell *matCellDef="let element"> {{element.last_name}} </td>
+      <th mat-header-cell *matHeaderCellDef>Last name</th>
+      <td mat-cell *matCellDef="let element">{{ element.last_name }}</td>
     </ng-container>
     <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef> Email </th>
-        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+      <th mat-header-cell *matHeaderCellDef>Email</th>
+      <td mat-cell *matCellDef="let element">{{ element.email }}</td>
     </ng-container>
     <ng-container matColumnDef="detail-button">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let element"> 
-            <button mat-stroked-button>DETAIL</button>
-        </td>
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-stroked-button routerLink="/user/{{ element.id }}">
+          DETAIL
+        </button>
+      </td>
     </ng-container>
     <ng-container matColumnDef="edit-button">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let element"> 
-            <button mat-stroked-button color="primary">EDIT</button>
-        </td>
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-stroked-button
+          color="primary"
+          routerLink="/update/user/{{ element.id }}"
+        >
+          EDIT
+        </button>
+      </td>
     </ng-container>
     <ng-container matColumnDef="delete-button">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let element"> 
-            <button mat-flat-button color="warn">DELETE</button>
-        </td>
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-flat-button color="warn" (click)="deleteUser(element.id)">
+          DELETE
+        </button>
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
     <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
-</table>
+  </table>
+</ng-template>
 
-<mat-paginator [pageSizeOptions]="[10, 20, 50]"
-                 showFirstLastButtons
-                 aria-label="Select page of users">
+<mat-paginator
+  [pageSizeOptions]="[10, 20, 50]"
+  showFirstLastButtons
+  aria-label="Select page of users"
+>
 </mat-paginator>

@@ -1,1 +1,72 @@
-<p>update-user works!</p>
+<mat-spinner
+  *ngIf="isLoading; else loadingFinished"
+  ngClass="progress-spinner"
+></mat-spinner>
+
+<ng-template #loadingFinished>
+  <mat-card ngClass="user-detail-card">
+    <mat-card-title> Update User </mat-card-title>
+    <mat-card-subtitle>
+      Edit
+      {{ selectedUser.first_name }}
+      {{ selectedUser.last_name }}
+      Persona
+    </mat-card-subtitle>
+    <mat-card-content>
+      <form>
+        <mat-form-field appearance="outline">
+          <mat-label>First Name</mat-label>
+          <input
+            matInput
+            [(ngModel)]="selectedUser.first_name"
+            name="first-name"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input
+            matInput
+            [(ngModel)]="selectedUser.last_name"
+            name="last-name"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput [(ngModel)]="selectedUser.email" name="email" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Occupation</mat-label>
+          <input
+            matInput
+            [(ngModel)]="selectedUser.occupation"
+            name="occupation"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Biography</mat-label>
+          <textarea
+            matInput
+            [(ngModel)]="selectedUser.bio"
+            name="bio"
+          ></textarea>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button
+        mat-stroked-button
+        color="primary"
+        [routerLink]="['/home']"
+        (click)="onSubmit()"
+      >
+        UPDATE USER
+      </button>
+      <button mat-stroked-button [routerLink]="['/home']">RETURN</button>
+    </mat-card-actions>
+  </mat-card>
+</ng-template>
