@@ -1,19 +1,29 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { HttpService } from './http.service';
 import { User } from '../models/user.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UsersService {
-  constructor(private router: Router, private http: HttpService) {}
+  constructor(private http: HttpService, private _snackBar: MatSnackBar) {}
 
   users = new BehaviorSubject<User[]>([]);
   selectedUser = new BehaviorSubject<User>(new User());
 
   isLoading = new BehaviorSubject<boolean>(false);
+
+  createdUserMessage: string = 'User created successfully!';
+  updatedUserMessage: string = 'User updated successfully!';
+  deletedUserMessage: string = 'User deleted successfully!';
+
+  openSnackBar(message: string) {
+    this._snackBar.open(message, 'OK', {
+      duration: 3000,
+    });
+  }
 
   public fetchUsers() {
     this.isLoading.next(true);
@@ -35,10 +45,12 @@ export class UsersService {
     this.isLoading.next(true);
     const userData = this.selectedUser.getValue();
 
-    if (!userData.isNull()) {
+    if (userData != null) {
       this.http.updateUser(userData).subscribe();
 
       this.fetchUsers();
+
+      this.openSnackBar(this.updatedUserMessage);
     }
   }
 
@@ -48,6 +60,8 @@ export class UsersService {
     this.users.next(updatedUsers);
 
     this.http.deleteUser(id).subscribe();
+
+    this.openSnackBar(this.deletedUserMessage);
   }
 
   public createUser(user: User) {
@@ -57,6 +71,8 @@ export class UsersService {
       this.http.createUser(user).subscribe();
 
       this.fetchUsers();
+
+      this.openSnackBar(this.createdUserMessage);
     }
   }
 }

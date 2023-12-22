@@ -19,6 +19,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatSortModule } from '@angular/material/sort';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 /* Routing */
 import { AppRoutingModule } from './app-routing.module';
@@ -50,6 +51,7 @@ import { AddUserComponent } from './user/add-user/add-user.component';
     MatInputModule,
     FormsModule,
     MatSortModule,
+    MatSnackBarModule,
     RouterModule.forRoot(routes),
   ],
   providers: [],
