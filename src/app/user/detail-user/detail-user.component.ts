@@ -12,25 +12,29 @@ import { UsersService } from 'src/app/shared/services/users.service';
 export class DetailUserComponent implements OnInit {
   constructor(
     private userService: UsersService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router
+    private activatedRoute: ActivatedRoute
   ) {}
 
   selectedUser: User = new User();
   subscriptions: Subscription[] = [];
 
+  isLoading: boolean = false;
+
   ngOnInit(): void {
     const id = parseInt(this.activatedRoute.snapshot.params['id'], 10);
-    //this.activatedRoute.paramMap.subscribe((params) => {
-    //const id = params.get('id');
+
     this.userService.selectUser(id.toString());
-    //});
 
     let subscription = this.userService.selectedUser.subscribe(
       (selectedUser) => (this.selectedUser = selectedUser)
     );
     this.subscriptions.push(subscription);
 
-    console.log(this.selectedUser);
+    subscription = this.userService.isLoading.subscribe(
+      (isLoading: boolean) => {
+        this.isLoading = isLoading;
+      }
+    );
+    this.subscriptions.push(subscription);
   }
 }

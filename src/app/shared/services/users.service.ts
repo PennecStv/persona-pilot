@@ -29,6 +29,17 @@ export class UsersService {
       this.selectedUser.next(user);
       this.isLoading.next(false);
     });
-    // sub.unsubscribe();
+  }
+
+  public updateUser() {
+    this.isLoading.next(true);
+    const userData = this.selectedUser.getValue();
+    console.log(userData);
+
+    if (userData) {
+      this.http.updateUser(userData).subscribe(() => {
+        this.isLoading.next(false);
+      });
+    }
   }
 }

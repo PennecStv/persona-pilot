@@ -18,4 +18,8 @@ export class HttpService {
   public getUser(id: string): Observable<User> {
     return this.httpClient.get<User>(`${this.apiURL}/${id}`);
   }
+
+  public updateUser(user: User): Observable<User> {
+    return this.httpClient.put<User>(`${this.apiURL}/${user.id}`, user);
+  }
 }
