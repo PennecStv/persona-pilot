@@ -2,33 +2,47 @@
 </mat-spinner>
 
 <ng-template #loadingFinished>
-  <mat-form-field>
-    <mat-label>Searching by </mat-label>
-    <select matNativeControl [(ngModel)]="selectedColumn">
-      <option value="all">All</option>
-      <option value="first_name">First name</option>
-      <option value="last_name">Last name</option>
-      <option value="email">Email</option>
-      <option value="occupation">Occupation</option>
-    </select>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Search</mat-label>
-    <input
-      matInput
-      [(ngModel)]="searchTerm"
-      (input)="search()"
-      name="search-email"
-    />
-  </mat-form-field>
+  <div class="control-bar">
+    <div class="search-control">
+      <mat-form-field>
+        <mat-label>Searching by </mat-label>
+        <select matNativeControl [(ngModel)]="selectedColumn">
+          <option value="all">All</option>
+          <option value="first_name">First name</option>
+          <option value="last_name">Last name</option>
+          <option value="email">Email</option>
+          <option value="occupation">Occupation</option>
+        </select>
+      </mat-form-field>
+      <mat-form-field [ngStyle]="{ width: '30vw' }">
+        <mat-label>Search</mat-label>
+        <input
+          matInput
+          [(ngModel)]="searchTerm"
+          (input)="search()"
+          name="search-email"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="clearInput()"
+          [attr.aria-label]="'clear input field'"
+          *ngIf="searchTerm != ''"
+        >
+          <mat-icon [ngStyle]="{ color: 'white' }">clear</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
 
-  <button mat-raised-button routerLink="/add">ADD USER</button>
+    <button mat-raised-button color="accent" routerLink="/add">ADD USER</button>
+  </div>
 
   <table
     mat-table
     [dataSource]="userDataSource"
     matSort
     (matSortChange)="sortData($event)"
+    [ngStyle]="{ height: '100%' }"
   >
     <ng-container matColumnDef="id">
       <th mat-header-cell mat-sort-header="id" *matHeaderCellDef>ID</th>
@@ -55,7 +69,11 @@
     <ng-container matColumnDef="detail-button">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
-        <button mat-stroked-button routerLink="/user/{{ element.id }}">
+        <button
+          mat-stroked-button
+          color="accent"
+          routerLink="/user/{{ element.id }}"
+        >
           DETAIL
         </button>
       </td>

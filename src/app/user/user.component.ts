@@ -120,6 +120,11 @@ export class UserComponent implements OnInit {
     });
   }
 
+  clearInput(): void {
+    this.searchTerm = '';
+    this.search();
+  }
+
   deleteUser(id: string): void {
     this.userService.deleteUser(id);
   }

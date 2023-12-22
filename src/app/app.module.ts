@@ -20,6 +20,8 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatSortModule } from '@angular/material/sort';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
 
 /* Routing */
 import { AppRoutingModule } from './app-routing.module';
@@ -52,6 +54,8 @@ import { AddUserComponent } from './user/add-user/add-user.component';
     FormsModule,
     MatSortModule,
     MatSnackBarModule,
+    MatToolbarModule,
+    MatIconModule,
     RouterModule.forRoot(routes),
   ],
   providers: [],
