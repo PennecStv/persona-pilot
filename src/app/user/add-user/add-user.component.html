@@ -1,1 +1,44 @@
-<p>add-user works!</p>
+<mat-card ngClass="user-detail-card">
+  <mat-card-title> Add a new Persona to the collection </mat-card-title>
+  <mat-card-subtitle> A new member joining the unit </mat-card-subtitle>
+  <mat-card-content>
+    <form>
+      <mat-form-field appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input matInput [(ngModel)]="newUser.first_name" name="first-name" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input matInput [(ngModel)]="newUser.last_name" name="last-name" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput [(ngModel)]="newUser.email" name="email" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Occupation</mat-label>
+        <input matInput [(ngModel)]="newUser.occupation" name="occupation" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Biography</mat-label>
+        <textarea matInput [(ngModel)]="newUser.bio" name="bio"></textarea>
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button
+      mat-stroked-button
+      color="primary"
+      [routerLink]="['/home']"
+      (click)="onSubmit()"
+    >
+      CREATE USER
+    </button>
+    <button mat-stroked-button [routerLink]="['/home']">RETURN</button>
+  </mat-card-actions>
+</mat-card>

@@ -35,14 +35,7 @@ export class UsersService {
     this.isLoading.next(true);
     const userData = this.selectedUser.getValue();
 
-    if (userData) {
-      // Update locally
-      const updatedUsers = this.users.value.map((user) =>
-        user.id === userData.id ? userData : user
-      );
-
-      this.users.next(updatedUsers);
-
+    if (!userData.isNull()) {
       this.http.updateUser(userData).subscribe();
 
       this.fetchUsers();
@@ -55,5 +48,15 @@ export class UsersService {
     this.users.next(updatedUsers);
 
     this.http.deleteUser(id).subscribe();
+  }
+
+  public createUser(user: User) {
+    this.isLoading.next(true);
+
+    if (!user.isNull()) {
+      this.http.createUser(user).subscribe();
+
+      this.fetchUsers();
+    }
   }
 }

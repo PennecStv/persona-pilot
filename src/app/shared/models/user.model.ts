@@ -5,4 +5,15 @@ export class User {
   email!: string;
   occupation!: string;
   bio!: string;
+
+  isNull(): boolean {
+    return (
+      this.id === undefined &&
+      this.first_name === undefined &&
+      this.last_name === undefined &&
+      this.email === undefined &&
+      this.occupation === undefined &&
+      this.bio === undefined
+    );
+  }
 }

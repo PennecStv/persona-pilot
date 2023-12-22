@@ -2,6 +2,8 @@
 </mat-spinner>
 
 <ng-template #loadingFinished>
+  <button mat-raised-button routerLink="/add">ADD USER</button>
+
   <table mat-table [dataSource]="userDataSource">
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef>ID</th>

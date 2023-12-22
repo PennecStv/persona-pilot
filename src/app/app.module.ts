@@ -24,6 +24,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { routes } from './app.routes';
+import { AddUserComponent } from './user/add-user/add-user.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { routes } from './app.routes';
     UserComponent,
     DetailUserComponent,
     UpdateUserComponent,
+    AddUserComponent,
   ],
   imports: [
     BrowserModule,

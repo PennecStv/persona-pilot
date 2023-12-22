@@ -26,4 +26,8 @@ export class HttpService {
   public deleteUser(id: string): Observable<User> {
     return this.httpClient.delete<User>(`${this.apiURL}/${id}`);
   }
+
+  public createUser(user: User): Observable<User> {
+    return this.httpClient.post<User>(`${this.apiURL}`, user);
+  }
 }
