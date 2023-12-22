@@ -1,9 +1,9 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { UsersService } from '../shared/services/users.service';
 import { User } from '../shared/models/user.model';
-import { Subscription } from 'rxjs';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { Observable, Subscription } from 'rxjs';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-user',
@@ -15,6 +15,7 @@ export class UserComponent implements OnInit {
 
   usersList: User[] = [];
   subscriptions: Subscription[] = [];
+  users$: Observable<User[]> = new Observable<User[]>();
 
   userDataSource: MatTableDataSource<User> = new MatTableDataSource<User>();
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
@@ -32,6 +33,7 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.fetchUsers();
+    this.users$ = this.userService.users.asObservable();
 
     let subscription = this.userService.users.subscribe((data: User[]) => {
       this.usersList = data;
@@ -46,5 +48,13 @@ export class UserComponent implements OnInit {
       }
     );
     this.subscriptions.push(subscription);
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+  }
+
+  deleteUser(id: string): void {
+    this.userService.deleteUser(id);
   }
 }

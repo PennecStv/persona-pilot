@@ -34,12 +34,26 @@ export class UsersService {
   public updateUser() {
     this.isLoading.next(true);
     const userData = this.selectedUser.getValue();
-    console.log(userData);
 
     if (userData) {
-      this.http.updateUser(userData).subscribe(() => {
-        this.isLoading.next(false);
-      });
+      // Update locally
+      const updatedUsers = this.users.value.map((user) =>
+        user.id === userData.id ? userData : user
+      );
+
+      this.users.next(updatedUsers);
+
+      this.http.updateUser(userData).subscribe();
+
+      this.fetchUsers();
     }
+  }
+
+  public deleteUser(id: string) {
+    // Delete locally
+    const updatedUsers = this.users.value.filter((user) => user.id !== id);
+    this.users.next(updatedUsers);
+
+    this.http.deleteUser(id).subscribe();
   }
 }

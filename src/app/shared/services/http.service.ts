@@ -22,4 +22,8 @@ export class HttpService {
   public updateUser(user: User): Observable<User> {
     return this.httpClient.put<User>(`${this.apiURL}/${user.id}`, user);
   }
+
+  public deleteUser(id: string): Observable<User> {
+    return this.httpClient.delete<User>(`${this.apiURL}/${id}`);
+  }
 }

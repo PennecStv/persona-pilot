@@ -38,9 +38,11 @@ export class UpdateUserComponent implements OnInit {
     this.subscriptions.push(subscription);
   }
 
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+  }
+
   onSubmit(): void {
     this.userService.updateUser();
-
-    this.userService.fetchUsers();
   }
 }

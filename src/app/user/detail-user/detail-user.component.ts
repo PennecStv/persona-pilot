@@ -37,4 +37,8 @@ export class DetailUserComponent implements OnInit {
     );
     this.subscriptions.push(subscription);
   }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+  }
 }
