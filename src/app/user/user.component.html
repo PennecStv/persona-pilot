@@ -6,7 +6,11 @@
     <div class="search-control">
       <mat-form-field>
         <mat-label>Searching by </mat-label>
-        <select matNativeControl [(ngModel)]="selectedColumn">
+        <select
+          matNativeControl
+          [(ngModel)]="selectedColumn"
+          (change)="search()"
+        >
           <option value="all">All</option>
           <option value="first_name">First name</option>
           <option value="last_name">Last name</option>
@@ -34,7 +38,14 @@
       </mat-form-field>
     </div>
 
-    <button mat-raised-button color="accent" routerLink="/add">ADD USER</button>
+    <button
+      mat-raised-button
+      color="accent"
+      routerLink="/add"
+      [ngStyle]="{ 'margin-right': '75px' }"
+    >
+      ADD USER
+    </button>
   </div>
 
   <table
