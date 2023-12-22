@@ -18,6 +18,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { MatSortModule } from '@angular/material/sort';
 
 /* Routing */
 import { AppRoutingModule } from './app-routing.module';
@@ -48,6 +49,7 @@ import { AddUserComponent } from './user/add-user/add-user.component';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
+    MatSortModule,
     RouterModule.forRoot(routes),
   ],
   providers: [],
