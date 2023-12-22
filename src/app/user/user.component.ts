@@ -19,8 +19,11 @@ export class UserComponent implements OnInit {
 
   userDataSource: MatTableDataSource<User> = new MatTableDataSource<User>();
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
-  isLoading: boolean = false;
 
+  isLoading: boolean = false;
+  searchTerm: string = '';
+  columnToFilter: string = '';
+  selectedColumn: string = 'first_name';
   columnsToDisplay = [
     'id',
     'first_name',
@@ -52,6 +55,33 @@ export class UserComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+  }
+
+  customEmailFilter(data: User, filter: string): boolean {
+    switch (this.selectedColumn) {
+      case 'first_name':
+        this.columnToFilter = data.first_name.toLowerCase();
+        break;
+      case 'last_name':
+        this.columnToFilter = data.last_name.toLowerCase();
+        break;
+      case 'email':
+        this.columnToFilter = data.email.toLowerCase();
+        break;
+      case 'occupation':
+        this.columnToFilter = data.occupation.toLowerCase();
+        break;
+      default:
+        this.columnToFilter = data.first_name.toLowerCase();
+    }
+    return this.columnToFilter.includes(filter);
+  }
+
+  search(): void {
+    const filterValue = this.searchTerm.trim().toLowerCase();
+    this.userDataSource.filter = filterValue;
+    this.userDataSource.filterPredicate = (data, filter) =>
+      this.customEmailFilter(data, filterValue);
   }
 
   deleteUser(id: string): void {
