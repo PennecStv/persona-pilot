@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/shared/models/user.model';
 import { UsersService } from 'src/app/shared/services/users.service';
 
@@ -9,10 +8,7 @@ import { UsersService } from 'src/app/shared/services/users.service';
   styleUrls: ['./add-user.component.css'],
 })
 export class AddUserComponent {
-  constructor(
-    private userService: UsersService,
-    private activatedRoute: ActivatedRoute
-  ) {}
+  constructor(private userService: UsersService) {}
 
   newUser: User = new User();
 

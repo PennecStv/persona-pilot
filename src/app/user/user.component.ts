@@ -4,6 +4,7 @@ import { User } from '../shared/models/user.model';
 import { Observable, Subscription } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Sort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-user',
@@ -13,8 +14,8 @@ import { MatTableDataSource } from '@angular/material/table';
 export class UserComponent implements OnInit {
   constructor(private userService: UsersService) {}
 
-  usersList: User[] = [];
   subscriptions: Subscription[] = [];
+  sortedData: User[] = [];
   users$: Observable<User[]> = new Observable<User[]>();
 
   userDataSource: MatTableDataSource<User> = new MatTableDataSource<User>();
@@ -39,8 +40,7 @@ export class UserComponent implements OnInit {
     this.users$ = this.userService.users.asObservable();
 
     let subscription = this.userService.users.subscribe((data: User[]) => {
-      this.usersList = data;
-      this.userDataSource = new MatTableDataSource<User>(this.usersList);
+      this.userDataSource = new MatTableDataSource<User>(data);
       this.userDataSource.paginator = this.paginator;
     });
     this.subscriptions.push(subscription);
@@ -90,6 +90,39 @@ export class UserComponent implements OnInit {
     this.userDataSource.filter = filterValue;
     this.userDataSource.filterPredicate = (data, filter) =>
       this.customEmailFilter(data, filterValue);
+  }
+
+  compare(a: number | string, b: number | string, isAsc: boolean) {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+  }
+
+  sortData(sort: Sort) {
+    const data = this.userDataSource.data.slice();
+    if (!sort.active || sort.direction === '') {
+      this.userDataSource.data = data;
+      return;
+    }
+
+    this.userDataSource.data = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'id':
+          return this.compare(parseInt(a.id), parseInt(b.id), isAsc);
+        case 'first_name':
+          return this.compare(a.first_name, b.first_name, isAsc);
+        case 'last_name':
+          return this.compare(a.last_name, b.last_name, isAsc);
+        case 'email':
+          return this.compare(a.email, b.email, isAsc);
+        default:
+          return 0;
+      }
+    });
+  }
+
+  clearInput(): void {
+    this.searchTerm = '';
+    this.search();
   }
 
   deleteUser(id: string): void {

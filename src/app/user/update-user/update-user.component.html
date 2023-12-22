@@ -13,7 +13,7 @@
       Persona
     </mat-card-subtitle>
     <mat-card-content>
-      <form>
+      <form ngClass="user-form">
         <mat-form-field appearance="outline">
           <mat-label>First Name</mat-label>
           <input
@@ -46,18 +46,22 @@
           />
         </mat-form-field>
 
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" ngClass="bio-field">
           <mat-label>Biography</mat-label>
           <textarea
             matInput
             [(ngModel)]="selectedUser.bio"
             name="bio"
+            ngClass="bio-textarea"
+            style="height: 100px"
+            maxlength="100"
           ></textarea>
+          <mat-hint align="end">{{ selectedUser.bio.length }}/100</mat-hint>
         </mat-form-field>
       </form>
     </mat-card-content>
 
-    <mat-card-actions>
+    <mat-card-actions ngClass="user-form-button">
       <button
         mat-stroked-button
         color="primary"

@@ -2,71 +2,114 @@
 </mat-spinner>
 
 <ng-template #loadingFinished>
-  <mat-form-field>
-    <mat-label>Searching by </mat-label>
-    <select matNativeControl [(ngModel)]="selectedColumn">
-      <option value="all">All</option>
-      <option value="first_name">First name</option>
-      <option value="last_name">Last name</option>
-      <option value="email">Email</option>
-      <option value="occupation">Occupation</option>
-    </select>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Search</mat-label>
-    <input
-      matInput
-      [(ngModel)]="searchTerm"
-      (input)="search()"
-      name="search-email"
-    />
-  </mat-form-field>
+  <div class="control-bar">
+    <div class="search-control">
+      <mat-form-field>
+        <mat-label>Searching by </mat-label>
+        <select
+          matNativeControl
+          [(ngModel)]="selectedColumn"
+          (change)="search()"
+        >
+          <option value="all">All</option>
+          <option value="first_name">First name</option>
+          <option value="last_name">Last name</option>
+          <option value="email">Email</option>
+          <option value="occupation">Occupation</option>
+        </select>
+      </mat-form-field>
+      <mat-form-field [ngStyle]="{ width: '30vw' }">
+        <mat-label>Search</mat-label>
+        <input
+          matInput
+          [(ngModel)]="searchTerm"
+          (input)="search()"
+          name="search-email"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="clearInput()"
+          [attr.aria-label]="'clear input field'"
+          *ngIf="searchTerm != ''"
+        >
+          <mat-icon [ngStyle]="{ color: 'white' }">clear</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
 
-  <button mat-raised-button routerLink="/add">ADD USER</button>
+    <button
+      mat-raised-button
+      color="accent"
+      routerLink="/add"
+      [ngStyle]="{ 'margin-right': '75px' }"
+    >
+      <mat-icon>add</mat-icon>
+      ADD USER
+    </button>
+  </div>
 
-  <table mat-table [dataSource]="userDataSource" matSort>
+  <table
+    mat-table
+    [dataSource]="userDataSource"
+    matSort
+    (matSortChange)="sortData($event)"
+    [ngStyle]="{ height: '100%' }"
+    ngClass="user-table"
+  >
     <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <th mat-header-cell mat-sort-header="id" *matHeaderCellDef>ID</th>
       <td mat-cell *matCellDef="let element" [routerLink]="[]">
         {{ element.id }}
       </td>
     </ng-container>
     <ng-container matColumnDef="first_name">
-      <th mat-header-cell *matHeaderCellDef>First name</th>
+      <th mat-header-cell mat-sort-header="first_name" *matHeaderCellDef>
+        First name
+      </th>
       <td mat-cell *matCellDef="let element">{{ element.first_name }}</td>
     </ng-container>
     <ng-container matColumnDef="last_name">
-      <th mat-header-cell *matHeaderCellDef>Last name</th>
+      <th mat-header-cell mat-sort-header="last_name" *matHeaderCellDef>
+        Last name
+      </th>
       <td mat-cell *matCellDef="let element">{{ element.last_name }}</td>
     </ng-container>
     <ng-container matColumnDef="email">
-      <th mat-header-cell *matHeaderCellDef>Email</th>
+      <th mat-header-cell mat-sort-header="email" *matHeaderCellDef>Email</th>
       <td mat-cell *matCellDef="let element">{{ element.email }}</td>
     </ng-container>
     <ng-container matColumnDef="detail-button">
       <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let element">
-        <button mat-stroked-button routerLink="/user/{{ element.id }}">
+      <td mat-cell *matCellDef="let element" ngClass="control-button">
+        <button
+          mat-stroked-button
+          color="accent"
+          routerLink="/user/{{ element.id }}"
+        >
+          <mat-icon>reorder</mat-icon>
           DETAIL
         </button>
       </td>
     </ng-container>
     <ng-container matColumnDef="edit-button">
       <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let element">
+      <td mat-cell *matCellDef="let element" ngClass="control-button">
         <button
           mat-stroked-button
           color="primary"
           routerLink="/update/user/{{ element.id }}"
         >
+          <mat-icon>edit</mat-icon>
           EDIT
         </button>
       </td>
     </ng-container>
     <ng-container matColumnDef="delete-button">
       <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let element">
+      <td mat-cell *matCellDef="let element" ngClass="control-button">
         <button mat-flat-button color="warn" (click)="deleteUser(element.id)">
+          <mat-icon>delete_outline</mat-icon>
           DELETE
         </button>
       </td>
@@ -75,6 +118,7 @@
     <ng-container
       ><tr class="mat-row" *matNoDataRow>
         <td class="mat-cell" [attr.colspan]="columnsToDisplay.length">
+          <mat-icon>mood_bad</mat-icon>
           No users matching the filter.
         </td>
       </tr>
