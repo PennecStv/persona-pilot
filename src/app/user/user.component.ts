@@ -23,7 +23,7 @@ export class UserComponent implements OnInit {
   isLoading: boolean = false;
   searchTerm: string = '';
   columnToFilter: string = '';
-  selectedColumn: string = 'first_name';
+  selectedColumn: string = 'all';
   columnsToDisplay = [
     'id',
     'first_name',
@@ -59,6 +59,14 @@ export class UserComponent implements OnInit {
 
   customEmailFilter(data: User, filter: string): boolean {
     switch (this.selectedColumn) {
+      case 'all':
+        this.columnToFilter =
+          data.first_name.toLowerCase() +
+          data.last_name.toLowerCase() +
+          data.email.toLowerCase() +
+          data.occupation.toLowerCase() +
+          data.bio.toLowerCase();
+        break;
       case 'first_name':
         this.columnToFilter = data.first_name.toLowerCase();
         break;
