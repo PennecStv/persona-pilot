@@ -1,0 +1,51 @@
+.user-detail-card {
+  display: flex;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  width: 40vw;
+  color: white;
+  font-size: larger;
+}
+
+.list-item-label {
+  font-weight: bold;
+  color: #e91e63;
+  white-space: nowrap;
+}
+
+.list-item-label:not(:last-child) {
+  width: 30%;
+}
+
+.detail-icon {
+  font-size: 17.5px;
+  height: 17.5px;
+}
+
+.list-item {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+}
+
+.list-item {
+  border-bottom: 1px solid #000; /* Change #000 to any color you want */
+}
+
+.bio-content {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  width: 100%;
+  white-space: pre-wrap;
+}
+
+.return-button {
+  display: block;
+  margin: auto;
+  margin-top: 20px;
+  text-align: center;
+}

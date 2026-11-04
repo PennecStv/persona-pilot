@@ -1,0 +1,29 @@
+.user-detail-card {
+  display: flex;
+  text-align: center;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  width: 40vw;
+  color: white;
+}
+
+.user-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 20px;
+  margin-inline: 5vw;
+}
+
+.user-form-button {
+  margin-top: 20px;
+  justify-content: space-evenly;
+}
+
+.bio-field {
+  height: 20vh;
+}

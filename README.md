@@ -1,93 +1,147 @@
-# my-user-list
+<div align="center">
+  <img src="docs/images/logo.png" alt="Logo Persona Pilot" width="120">
+  <h1>Persona Pilot</h1>
+  <p>
+    <img src="https://img.shields.io/badge/Angular-16.2-C2185B?logo=angular&amp;logoColor=white&amp;style=flat-square" alt="Angular 16.2">
+    <img src="https://img.shields.io/badge/Angular_Material-16.2-C2185B?logo=angular&amp;logoColor=white&amp;style=flat-square" alt="Angular Material 16.2">
+    <img src="https://img.shields.io/badge/TypeScript-5.1-424242?logo=typescript&amp;logoColor=white&amp;style=flat-square" alt="TypeScript 5.1">
+    <img src="https://img.shields.io/badge/RxJS-7.8-424242?logo=reactivex&amp;logoColor=white&amp;style=flat-square" alt="RxJS 7.8">
+    <img src="https://img.shields.io/badge/code-develop-B0BEC5?logo=git&amp;logoColor=white&amp;style=flat-square" alt="Code sur la branche develop">
+    <img src="https://img.shields.io/badge/tests-10%2F10-C2185B?style=flat-square" alt="10 tests sur 10 réussis">
+    <a href="LICENSE"><img src="https://img.shields.io/badge/licence-MIT-B0BEC5?style=flat-square" alt="Licence MIT"></a>
+  </p>
+</div>
 
+![Liste des utilisateurs de Persona Pilot](docs/images/cover.png)
 
+Application web Angular de gestion d'utilisateurs (« personas ») : liste paginée, recherche, tri, consultation, création, modification et suppression. Les données viennent d'une API REST simulée hébergée sur [MockAPI](https://mockapi.io/).
 
-## Getting started
+Projet développé en décembre 2023, d'abord hébergé sur la forge de l'université Lyon 1 sous le nom `my-user-list`.
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+## Branches
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+| Branche   | Contenu                                                 |
+| --------- | ------------------------------------------------------- |
+| `main`    | `README.md`, ses images (`docs/images/`) et `LICENSE`   |
+| `develop` | L'application Angular complète                          |
 
-## Add your files
+Le code se trouve sur `develop` : les instructions ci-dessous partent de cette branche.
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+## Fonctionnalités
 
-```
-cd existing_repo
-git remote add origin https://forge.univ-lyon1.fr/p2109664/my-user-list.git
-git branch -M main
-git push -uf origin main
-```
+- **Liste des utilisateurs** : tableau paginé (10, 20 ou 50 lignes par page).
+- **Recherche** sans distinction de casse, sur un champ au choix (prénom, nom, email, profession) ou sur tous à la fois (biographie incluse).
+- **Tri** par colonne : ID, prénom, nom, email.
+- **Fiche détaillée** de chaque utilisateur.
+- **Création, modification et suppression**, avec une notification (snackbar) de 3 secondes après chaque action.
+- **Page 404** pour les routes inconnues.
 
-## Integrate with your tools
+## Stack technique
 
-- [ ] [Set up project integrations](https://forge.univ-lyon1.fr/p2109664/my-user-list/-/settings/integrations)
-
-## Collaborate with your team
-
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+| Élément                | Version                      |
+| ---------------------- | ---------------------------- |
+| Angular (CLI, core)    | 16.2                         |
+| Angular Material / CDK | 16.2 (thème `pink-bluegrey`) |
+| TypeScript             | 5.1                          |
+| RxJS                   | 7.8                          |
+| Tests                  | Karma 6.4, Jasmine 4.6       |
 
 ## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+Prérequis : Node.js et npm. Angular 16 prend officiellement en charge Node.js 16 et 18. Le projet s'installe et se compile aussi avec Node.js 23.11, mais le CLI affiche alors un avertissement de version non supportée.
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+```bash
+git clone git@github.com:PennecStv/persona-pilot.git
+cd persona-pilot
+git checkout develop
+npm ci
+npm start
+```
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+L'application est disponible sur <http://localhost:4200/>.
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+> **Attention :** l'URL de l'API est codée en dur et son jeu de données est partagé. Les créations, modifications et suppressions faites en local s'appliquent donc réellement à ces données.
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+## Scripts
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+| Commande        | Rôle                                                   |
+| --------------- | ------------------------------------------------------ |
+| `npm start`     | Serveur de développement avec rechargement automatique |
+| `npm run build` | Build de production dans `dist/personapilot/`          |
+| `npm run watch` | Build de développement en continu                      |
+| `npm test`      | Tests unitaires avec Karma, en mode watch              |
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+## Routes
 
-## License
-For open source projects, say how it is licensed.
+| Chemin             | Écran                                              |
+| ------------------ | -------------------------------------------------- |
+| `/`                | Redirige vers `/home`                              |
+| `/home`            | Liste des utilisateurs                             |
+| `/user/:id`        | Fiche détaillée                                    |
+| `/update/user/:id` | Formulaire de modification                         |
+| `/add`             | Formulaire de création                             |
+| `/404`             | Page introuvable (toute route inconnue y redirige) |
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+## Architecture
+
+```text
+src/app/
+├── 404/                     # Page introuvable
+├── shared/
+│   ├── models/user.model.ts       # Modèle User
+│   └── services/
+│       ├── http.service.ts        # Appels REST vers MockAPI
+│       └── users.service.ts       # État partagé et notifications
+├── user/
+│   ├── user.component.*           # Liste, recherche, tri, suppression
+│   ├── add-user/                  # Création
+│   ├── detail-user/               # Fiche détaillée
+│   └── update-user/               # Modification
+├── app.module.ts
+└── app.routes.ts            # Déclaration des routes
+```
+
+Les composants passent par `UsersService`, qui expose l'état de l'application dans des `BehaviorSubject` (`users`, `selectedUser`, `isLoading`) et délègue les appels réseau à `HttpService`.
+
+### Données
+
+L'API se trouve à l'adresse `https://658389484d1ee97c6bce044c.mockapi.io/api/v1/users`, définie dans `src/app/shared/services/http.service.ts`. Elle expose les opérations `GET`, `POST`, `PUT` et `DELETE` sur la ressource `users`.
+
+| Champ        | Type     |
+| ------------ | -------- |
+| `id`         | `string` |
+| `first_name` | `string` |
+| `last_name`  | `string` |
+| `email`      | `string` |
+| `occupation` | `string` |
+| `bio`        | `string` |
+
+## Tests
+
+Le projet contient 8 fichiers de specs, pour 10 tests. Pour les lancer une seule fois sans interface :
+
+```bash
+npx ng test --watch=false --browsers=ChromeHeadless
+```
+
+**État actuel : les 10 tests réussissent.** Ce sont surtout des tests de création des composants et des services. Les appels HTTP y sont simulés avec `HttpClientTestingModule`, donc les tests n'appellent jamais l'API. Les parcours métier (recherche, tri, création, modification, suppression) ne sont pas encore testés.
+
+## Limites connues
+
+- **Pas de gestion d'erreur réseau** : si l'API échoue, le spinner reste affiché, et les notifications de succès s'affichent sans attendre la réponse du serveur.
+- **Liste parfois périmée** : après une création ou une modification, la liste est rechargée sans attendre la fin de la requête d'écriture et peut donc afficher l'état précédent.
+- **Formulaires sans validation** : aucun champ n'est obligatoire et le format de l'email n'est pas contrôlé. La limite de 100 caractères sur la biographie n'existe que dans le formulaire de modification.
+- **Suppression immédiate**, sans demande de confirmation.
+- **Budget de build dépassé** : le bundle initial pèse 886 kB, au-dessus du seuil d'avertissement de 500 kB fixé dans `angular.json`. Le build aboutit quand même.
+
+## Déploiement
+
+Le fichier `.gitlab-ci.yml` de `develop` date de l'hébergement sur GitLab : il construit l'application et la publie sur GitLab Pages depuis la branche par défaut. Il n'a aucun effet sur GitHub, et aucun déploiement n'est configuré pour ce dépôt.
+
+## Auteur
+
+Steve Pennec
+
+## Licence
+
+Ce projet est distribué sous licence MIT. Voir le fichier [`LICENSE`](LICENSE).
