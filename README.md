@@ -7,7 +7,8 @@
     <img src="https://img.shields.io/badge/TypeScript-5.1-424242?logo=typescript&amp;logoColor=white&amp;style=flat-square" alt="TypeScript 5.1">
     <img src="https://img.shields.io/badge/RxJS-7.8-424242?logo=reactivex&amp;logoColor=white&amp;style=flat-square" alt="RxJS 7.8">
     <img src="https://img.shields.io/badge/code-develop-B0BEC5?logo=git&amp;logoColor=white&amp;style=flat-square" alt="Code sur la branche develop">
-    <img src="https://img.shields.io/badge/tests-3%2F10-F44336?style=flat-square" alt="3 tests sur 10 réussis">
+    <img src="https://img.shields.io/badge/tests-10%2F10-C2185B?style=flat-square" alt="10 tests sur 10 réussis">
+    <a href="LICENSE"><img src="https://img.shields.io/badge/licence-MIT-B0BEC5?style=flat-square" alt="Licence MIT"></a>
   </p>
 </div>
 
@@ -19,10 +20,10 @@ Projet développé en décembre 2023, d'abord hébergé sur la forge de l'univer
 
 ## Branches
 
-| Branche   | Contenu                                     |
-| --------- | ------------------------------------------- |
-| `main`    | `README.md` et ses images (`docs/images/`)  |
-| `develop` | L'application Angular complète              |
+| Branche   | Contenu                                                 |
+| --------- | ------------------------------------------------------- |
+| `main`    | `README.md`, ses images (`docs/images/`) et `LICENSE`   |
+| `develop` | L'application Angular complète                          |
 
 Le code se trouve sur `develop` : les instructions ci-dessous partent de cette branche.
 
@@ -123,10 +124,7 @@ Le projet contient 8 fichiers de specs, pour 10 tests. Pour les lancer une seule
 npx ng test --watch=false --browsers=ChromeHeadless
 ```
 
-**État actuel : 3 tests réussis, 7 en échec.** Ce sont les specs générées par le CLI, qui n'ont pas été adaptées au code :
-
-- 6 échecs viennent de l'absence de `HttpClient` dans le module de test (`No provider for HttpClient`).
-- 1 échec vient de `AppComponent`, dont le test attend encore le texte du modèle Angular (`personapilot app is running!`).
+**État actuel : les 10 tests réussissent.** Ce sont surtout des tests de création des composants et des services. Les appels HTTP y sont simulés avec `HttpClientTestingModule`, donc les tests n'appellent jamais l'API. Les parcours métier (recherche, tri, création, modification, suppression) ne sont pas encore testés.
 
 ## Limites connues
 
@@ -144,4 +142,6 @@ Le fichier `.gitlab-ci.yml` de `develop` date de l'hébergement sur GitLab : il 
 
 Steve Pennec
 
-Le dépôt ne contient pas de licence.
+## Licence
+
+Ce projet est distribué sous licence MIT. Voir le fichier [`LICENSE`](LICENSE).
